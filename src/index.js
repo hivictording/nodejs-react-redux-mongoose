@@ -1,8 +1,11 @@
 const express = require("express");
 
-const router = require("./routers");
+const router = require("./routes");
+require("./services/passport");
+require("./services/mongoose");
 
 const app = express();
+
 app.use(router);
 
 const port = process.env.PORT || 5000;
