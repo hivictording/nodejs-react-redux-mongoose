@@ -2,7 +2,7 @@ const passport = require("passport");
 const googlePassport = require("passport-google-oauth20").Strategy;
 
 const {
-  googleAuthCientID,
+  googleAuthClientID,
   googleAuthClientSecret,
 } = require("../../config/env");
 const { User } = require("../models");
@@ -20,7 +20,7 @@ passport.deserializeUser(async (id, done) => {
 passport.use(
   new googlePassport(
     {
-      clientID: googleAuthCientID,
+      clientID: googleAuthClientID,
       clientSecret: googleAuthClientSecret,
       callbackURL: "/auth/google/callback",
     },
