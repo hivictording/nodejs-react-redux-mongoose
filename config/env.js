@@ -1,5 +1,5 @@
 const {
-  googleAuthCientID,
+  googleAuthClientID,
   googleAuthClientSecret,
   mongoDBUrl,
   cookieKey,
@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === "production") {
   };
 } else {
   module.exports = {
-    googleAuthCientID,
+    googleAuthClientID,
     googleAuthClientSecret,
     mongoDBUrl,
     cookieKey,
