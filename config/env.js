@@ -1,14 +1,21 @@
-const { googleAuth, mongoDBUrl, cookieKey } = require("./dev");
+const {
+  googleAuthCientID,
+  googleAuthClientSecret,
+  mongoDBUrl,
+  cookieKey,
+} = require("./dev");
 
 if (process.env.NODE_ENV === "production") {
   module.exports = {
-    googleAuth: process.env.GOOGLE_AUTH,
+    googleAuthClientID: process.env.GOOGLE_AUTH_CLIENT_ID,
+    googleAuthClientSecret: process.env.GOOGLE_AUTH_CLIENT_SECRET,
     mongoDBUrl: process.env.MONGODB_URL,
     cookieKey: process.env.COOKIE_KEY,
   };
 } else {
   module.exports = {
-    googleAuth,
+    googleAuthCientID,
+    googleAuthClientSecret,
     mongoDBUrl,
     cookieKey,
   };
