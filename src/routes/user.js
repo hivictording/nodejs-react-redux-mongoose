@@ -12,4 +12,30 @@ userRouter
   .put("/", (req, res) => res.send("User Updated"))
   .delete("/", (req, res) => res.send("User Deleted"));
 
+userRouter.get(
+  "/current",
+  (req, res, next) => {
+    if (!req.user) {
+      return res.redirect("/auth/google");
+    }
+
+    next();
+  },
+  (req, res) => res.send(req.user)
+);
+
+userRouter.route("/logout").get(
+  (req, res, next) => {
+    if (!req.user) {
+      return res.redirect("/auth/google");
+    }
+
+    next();
+  },
+  (req, res) => {
+    req.logout();
+    res.redirect("/");
+  }
+);
+
 module.exports = userRouter;

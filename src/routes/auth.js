@@ -9,6 +9,10 @@ authRouter.route("/google").get(
   })
 );
 
-authRouter.route("/google/callback").get(passport.authenticate("google"));
+authRouter
+  .route("/google/callback")
+  .get(passport.authenticate("google"), (req, res) => {
+    res.redirect("/users");
+  });
 
 module.exports = authRouter;
