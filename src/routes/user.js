@@ -5,7 +5,7 @@ const { User } = require("../models");
 const {checkAuth} = require("../middleware/checkAuth")
 
 userRouter
-  .get("/", checkAuth, (req, res) => res.send("User Selected"))
+  .get("/",  checkAuth, (req, res) => res.send("User Selected"))
   .post("/", checkAuth, (req, res) => {
     new User({ userId: "12345" }).save();
     // res.send("ok");
