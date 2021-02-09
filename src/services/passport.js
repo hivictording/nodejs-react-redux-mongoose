@@ -30,6 +30,7 @@ passport.use(
         const user = await User.findOne({ userId: profile.id });
 
         if (user) {
+          // console.log(user)
           return done(null, user);
         }
 

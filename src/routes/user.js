@@ -2,37 +2,26 @@ const express = require("express");
 const userRouter = express.Router();
 
 const { User } = require("../models");
+const {checkAuth} = require("../middleware/checkAuth")
 
 userRouter
-  .get("/", (req, res) => res.send("User Selected"))
-  .post("/", (req, res) => {
+  .get("/", checkAuth, (req, res) => res.send("User Selected"))
+  .post("/", checkAuth, (req, res) => {
     new User({ userId: "12345" }).save();
     // res.send("ok");
   })
-  .put("/", (req, res) => res.send("User Updated"))
-  .delete("/", (req, res) => res.send("User Deleted"));
+  .put("/", checkAuth,(req, res) => res.send("User Updated"))
+  .delete("/", checkAuth,(req, res) => res.send("User Deleted"));
 
 userRouter.get(
   "/current",
-  (req, res, next) => {
-    if (!req.user) {
-      return res.redirect("/auth/google");
-    }
-
-    next();
-  },
+  checkAuth,
   (req, res) => res.send(req.user)
 );
 
 userRouter.route("/logout").get(
-  (req, res, next) => {
-    if (!req.user) {
-      return res.redirect("/auth/google");
-    }
-
-    next();
-  },
   (req, res) => {
+    console.log('logout')
     req.logout();
     res.redirect("/");
   }

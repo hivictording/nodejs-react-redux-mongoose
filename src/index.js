@@ -6,6 +6,7 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
+const {checkAuth} = require("./middleware/checkAuth")
 const router = require("./routes");
 require("./services/passport");
 require("./services/mongoose");
@@ -27,7 +28,7 @@ app.use(router);
 
 const port = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
+app.get("/", checkAuth, (req, res) => {
   res.send("Hello from node express server");
 });
 
