@@ -20,6 +20,12 @@ userRouter.get(
 );
 
 userRouter.route("/logout").get(
+  (req, res, next) => {
+    if (!req.user) {
+      return res.redirect("/auth/google");
+    }
+    next()
+},
   (req, res) => {
     console.log('logout')
     req.logout();
