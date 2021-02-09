@@ -28,7 +28,7 @@ app.use(router);
 
 const port = process.env.PORT || 5000;
 
-app.get("/", checkAuth, (req, res) => {
+app.get("/", (req, res) => {
   res.send("Hello from node express server");
 });
 

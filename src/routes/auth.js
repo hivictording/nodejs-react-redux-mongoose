@@ -12,7 +12,7 @@ authRouter.route("/google").get(
 authRouter
   .route("/google/callback")
   .get(passport.authenticate("google"), (req, res) => {
-    res.redirect("/users");
+    res.redirect("/users/current");
   });
 
 module.exports = authRouter;
