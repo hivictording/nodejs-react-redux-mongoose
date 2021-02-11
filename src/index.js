@@ -15,6 +15,7 @@ const { cookieKey } = require("../config/env");
 
 const app = express();
 
+app.use(express.json());
 app.use(
   cookieSession({
     maxAge: 60 * 60 * 1000,
